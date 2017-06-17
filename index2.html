@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FlixGenie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Link to javascript -->
+    <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+    <!--Link to jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!--Link to firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <!--Link to first index.html -->
+    <script type="text/html" src="FlixGenie/index.html"></script>
+    <!--Link to css stylesheet -->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    <!--Compiled and minified CSS for Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Compiled and minified JavaScript for Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Compiled and minified CSS for Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript for Materialize-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <!-- Insert nav bar here -->
+    <div class="panel-body">
+        <div class="card" id="poster-plot" style="width: 550px; height: 500px;">
+            <div class="card-image waves-effect waves-block waves-light" style="margin-left: 10px;">
+                <h4><strong>Lion </strong><span id="rating"><small>PG-13</small></span></h4>
+                <img class="artwork" src="https://d32qys9a6wm9no.cloudfront.net/images/movies/poster/4b/767d5973efb75efb2dfed62cf79c9728_500x735.jpg?t=1491878472" style="width: 227px; height: 327px;">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Click Here to Read About this Movie</span><i class="material-icons right"></i></span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"><strong>Lion </strong><span id="rating"><small>PG-13</small></span><i class="material-icons right">close</i></span>
+                <br>
+                <p id="plot">In LION, five-year-old Saroo gets lost on a train travelling away from his home and family. Frightened and bewildered, he ends up thousands of miles away, in chaotic Kolkata. Somehow he survives living on the streets, escaping all sorts of terrors and close calls in the process, before ending up in an orphanage that is itself not exactly a safe haven. Eventually Saroo is adopted by an Australian couple, and finds love and security as he grows up in Hobart. Not wanting to hurt his adoptive parents’ feelings, he suppresses his past, his emotional need for reunification, and his hope of ever finding his lost mother and brother. But a chance meeting with some fellow Indians reawakens his buried yearning. With just a small store of memories, and the help of a new technology called Google Earth, Saroo embarks on one of the greatest needle-in-a-haystack quests of modern times.</p>
+                <br>
+                <p>Director: <span id="director-info">Garth Davis</span></p>
+                <p>Actors: <span id="actor-info">Dev Patel,
+												Rooney Mara, Nicole Kidman, David Wenham, Sunny Pawar, Abhishek Bharate, Priyanka Bose, Tannishtha Chatterjee, Nawazuddin Siddiqui, Deepti Naval, Divian Ladwa, Sachin Joab, Pallavi Sharda, Arka Das</span></p>
+                <p>Screenwriters: <span id="screenwriter-info">Luke Davies</span></p>
+                <p>Producers: <span id="producer-info">Iain Canning,
+Angie Fielder</span></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div style="width: 600px; height: 600px;">
+        <div class="card horizontal">
+            <div class="card-image">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content" id="ratings-box">
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h4 class="header">Rotten Tomatoes Movie Reviews</h4></li>
+                        <img src="assets/images/logo.png">
+                        <li class="collection-item" id="total-reviews">Reviews Counted: <span>207</span></li>
+                        <img src="assets/images/tomato.png">
+                        <li class="collection-item" id="fresh-reviews">Fresh Reviews: <span>178</span></li>
+                        <img src="assets/images/splat.png">
+                        <li class="collection-item" id="rotten-reviews">Rotten Reviews: <span>29</span></li>
+                        <img src="assets/images/popcorn.png">
+                        <li class="collection-item" id="average-reviews">Average Rating: <span id="score">7.3 / 10</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Trailer</span>
+                    <iframe id="new-trailer" width="560" height="315" src="https://www.youtube.com/embed/Sw11C7rF3Ws" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+<div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title"></span>
+              <p>Find a movie you'd like to try? Excellent! Enjoy!</p>
+              <br>
+              <p>Not the kind of movie you were wishing for? Bummer. Click the button below to try again!
+            </div>
+            <div class="card-action">
+            <a class="waves-effect waves-light btn" id="new-movie-please">Movie me, please!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+</body>
+
+</html>

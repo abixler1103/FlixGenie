@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Your awesome Youtube search engine</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Awesome videos!" />
+    <link rel="stylesheet" href="//https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="w100 text-center"><a href="index.html">YouTube Viral Search</a></h1>
+    </header>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="#">
+                <p>
+                    <input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" value="Tom Hanks" />
+                </p>
+                <p>
+                    <input style="color: #ffffff; width: 200px;" type="submit" value="Search" class="form-control btn btn-primary w100">
+                </p>
+            </form>
+            <div id="results">
+                <div class="genre">
+                    <b>Drama</b>
+                </div>
+                <div id="list-of-movie-buttons">
+                    <div class="movie">
+                        <button class="movie-buttons" data-attribute="Forest Gump">Forest Gump</button>
+                    </div>
+                    <div>
+                        <button class="movie-buttons" data-attribute="Sully">Sully</button>
+                    </div>
+                    ...
+                </div>
+
+                <div id="list-of-movie-trailers">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/youtube.js"></script>
+</body>
+
+</html>
