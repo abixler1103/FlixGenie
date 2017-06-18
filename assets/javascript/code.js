@@ -1,35 +1,12 @@
 $(document).ready(function() {
     var netflixCategories = [];
     var sortedList = [];
-
-    var inputGenerated = $("#generated").val();
-    console.log(inputGenerated);
-    var movieInfo = "http://www.omdbapi.com/?t=" + "Inside Out" + "&apikey=40e9cece";
-    var movieTitle = "https://netflixroulette.net/api/api.php?actor=" + inputGenerated;
-
-
-    $.ajax({
-        url: movieInfo,
-        method: "GET"
-    }).done(function(response) {
-        console.log(response);
-        $("#actors").html(response.Actors);
-        $("#genre").html(response.Genre);
-        $("#ratings").append(response.Ratings[0].Value);
-        $("#ratings").append(response.Ratings[1].Value);
-        $("#ratings").append(response.Ratings[2].Value);
-        $("#plot").html(response.Plot);
-        $("#poster").attr("src", response.Poster);
-        $("#rated").html(response.Rated);
-        $("#title").html(response.Title);
-
-    });
-
-
+    var randomMovie = "";
+    var movieChoice = "";
+    var movieInfo = "";
 
     $("#clickBtn").on("click", function() {
         var inputGenerated = $("#generated").val();
-        var movieInfo = "http://www.omdbapi.com/?t=" + inputGenerated + "&apikey=40e9cece";
         var movieTitle = "https://netflixroulette.net/api/api.php?actor=" + inputGenerated;
 
         if (movieTitle !== '' || typeof movieTitle !== 'undefined') {
@@ -59,30 +36,34 @@ $(document).ready(function() {
                     });
 
                     console.log(choice);
-                }
+                    var random = Math.floor((Math.random() * choice.length) + 1);
+                    console.log(random);
+                    randomMovie = choice[random - 1];
+                    console.log(randomMovie);
+                    movieChoice = randomMovie.show_title;
+                    console.log(movieChoice);
+                    movieInfo = "http://www.omdbapi.com/?t=" + movieChoice + "&apikey=40e9cece";
+                    console.log(movieInfo);
 
-                // console.log(response);
-                // console.log(netflixCategories);
-                // console.log(sortedList);
+                };
 
+                $.ajax({
+                    url: movieInfo,
+                    method: "GET"
+                }).done(function(response) {
+                    console.log(response);
+                    $("#actors").html(response.Actors);
+                    $("#genre").html(response.Genre);
+                    $("#ratings").append(response.Ratings[0].Value);
+                    $("#ratings").append(response.Ratings[1].Value);
+                    $("#ratings").append(response.Ratings[2].Value);
+                    $("#plot").html(response.Plot);
+                    $("#poster").attr("src", response.Poster);
+                    $("#rated").html(response.Rated);
+                    $("#title").html(response.Title);
+
+                });
             });
-        }
-
-        $.ajax({
-            url: movieInfo,
-            method: "GET"
-        }).done(function(response) {
-            //console.log(response);
-            $("#actors").html(response.Actors);
-            $("#genre").html(response.Genre);
-            // $("#ratings").append(response.Ratings[0].Value);
-            // $("#ratings").append(response.Ratings[1].Value);
-            // $("#ratings").append(response.Ratings[2].Value);
-            $("#plot").html(response.Plot);
-            $("#poster").attr("src", response.Poster);
-            $("#rated").html(response.Rated);
-            $("#title").html(response.Title);
-
-        });
-    })
-})
+        };
+    });
+});
