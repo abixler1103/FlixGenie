@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    var config = {
+        apiKey: "AIzaSyDdSc475_ROupGHmwtJupWsAsBfrmBgyYs",
+        authDomain: "netflix-project.firebaseapp.com",
+        databaseURL: "https://netflix-project.firebaseio.com",
+        projectId: "netflix-project",
+        storageBucket: "",
+        messagingSenderId: "243336765650"
+    };
+    firebase.initializeApp(config);
+
     var netflixCategories = [];
     var sortedList = [];
     var randomMovie = "";
@@ -6,6 +16,7 @@ $(document).ready(function() {
     var movieInfo = "";
 
     $("#clickBtn").on("click", function() {
+        event.preventDefault();
         var inputGenerated = $("#generated").val();
         var movieTitle = "https://netflixroulette.net/api/api.php?actor=" + inputGenerated;
 
@@ -31,7 +42,8 @@ $(document).ready(function() {
 
                     choice = $.grep(response, function(movie, index) {
                         console.log(movie.category)
-                            //change sorted list to whatever the front-end input is.
+
+                        //change sorted list to whatever the front-end input is.
                         return movie.category == sortedList[2];
                     });
 
@@ -52,16 +64,43 @@ $(document).ready(function() {
                     method: "GET"
                 }).done(function(response) {
                     console.log(response);
-                    $("#actors").html(response.Actors);
-                    $("#genre").html(response.Genre);
-                    $("#ratings").append(response.Ratings[0].Value);
-                    $("#ratings").append(response.Ratings[1].Value);
-                    $("#ratings").append(response.Ratings[2].Value);
-                    $("#plot").html(response.Plot);
-                    $("#poster").attr("src", response.Poster);
-                    $("#rated").html(response.Rated);
-                    $("#title").html(response.Title);
 
+                    if (response.Response !== 'False') {
+
+                        $("#actor-info").html(response.Actors);
+                        $("#plot").html(response.Plot);
+                        $("#artwork").attr("src", response.Poster);
+                        $("#rating").html(response.Rated);
+                        $("#movie-name").html(response.Title);
+                        $("#director-info").html(response.Director);
+                        $("#ratings").append(response.Ratings[0].Value);
+                        $("#ratings").append(response.Ratings[1].Value);
+                    } else {
+                        $("#error").html("This movie information is unavailable! We have generated a trailer for your viewing pleasure!");
+                    }
+                    //alert the user if you want
+
+
+                });
+
+
+                $.ajax({
+                    url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + movieChoice + " trailer" + "&key=AIzaSyB8g6i8y1SPFbIcJw9flTwk7VEFXYWA5MY",
+                    context: document.body
+                }).done(function(response) {
+                    console.log(response);
+
+                    var videoId = response.items[0].id.videoId;
+
+                    var embedCode = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/" + videoId + "\" frameborder=\"0\" allowfullscreen></iframe>";
+
+                    $('#list-of-movie-trailers').html(embedCode);
+                });
+
+                var database = firebase.database();
+
+                database.ref().push({
+                    movieName: movieChoice
                 });
             });
         };
