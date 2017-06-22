@@ -14,6 +14,7 @@ $(document).ready(function() {
     var randomMovie = "";
     var movieChoice = "";
     var movieInfo = "";
+    var moviePicked = "";
 
     $("#clickBtn").on("click", function() {
         event.preventDefault();
@@ -97,12 +98,18 @@ $(document).ready(function() {
                     $('#list-of-movie-trailers').html(embedCode);
                 });
 
-                var database = firebase.database();
-
-                database.ref().push({
-                    movieName: movieChoice
-                });
             });
         };
+    });
+    var database = firebase.database();
+
+    database.ref().push({
+        movieName: moviePicked
+    });
+
+    database.ref().orderByChild("dateAdded").limitToLast(10).on("child_added", function(childResponse, prevChildKey) {
+        moviePicked = childResponse.val().movieName;
+        console.log(moviePicked);
+        $("#previous").append("<tr><td>" + moviePicked + "</tr></td>");
     });
 });
